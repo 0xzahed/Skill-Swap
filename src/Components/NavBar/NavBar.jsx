@@ -19,18 +19,12 @@ const NavBar = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink
-          to={"/service"}
-          className={({ isActive }) =>
-            `px-3 py-2 transition ${
-              isActive
-                ? "text-[#422AD5] bg-[#EBE9FA] rounded-lg font-semibold"
-                : "text-gray-700 hover:text-[#422AD5] bg-transparent"
-            }`
-          }
+        <a
+          href="/#services"
+          className="px-3 py-2 transition text-gray-700 hover:text-[#422AD5] bg-transparent"
         >
           Service
-        </NavLink>
+        </a>
       </li>
       <li>
         <NavLink
@@ -66,7 +60,6 @@ const NavBar = () => {
   return (
     <div className="px-10 navbar bg-base-100 shadow-sm">
       <div className="navbar-start flex items-center gap-2">
-    
         <div className="dropdown lg:hidden">
           <label tabIndex={0} className="btn btn-ghost">
             <svg
@@ -92,14 +85,19 @@ const NavBar = () => {
           </ul>
         </div>
 
-        <NavLink to="/" className="btn btn-ghost text-xl font-bold text-[#422AD5]">
+        <NavLink
+          to="/"
+          className="btn btn-ghost text-xl font-bold text-[#422AD5]"
+        >
           SkillSwap
         </NavLink>
       </div>
 
       {/* Desktop menu */}
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1 flex items-center gap-2">{links}</ul>
+        <ul className="menu menu-horizontal px-1 flex items-center gap-2">
+          {links}
+        </ul>
       </div>
       <div className="navbar-end">
         <button className="btn text-white bg-[#422AD5]">LogIn</button>
