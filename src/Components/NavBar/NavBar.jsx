@@ -2,52 +2,107 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 const NavBar = () => {
+  const links = (
+    <>
+      <li>
+        <NavLink
+          to={"/"}
+          className={({ isActive }) =>
+            `px-3 py-2 transition ${
+              isActive
+                ? "text-[#422AD5] bg-[#EBE9FA] rounded-lg font-semibold"
+                : "text-gray-700 hover:text-[#422AD5] bg-transparent"
+            }`
+          }
+        >
+          Home
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to={"/service"}
+          className={({ isActive }) =>
+            `px-3 py-2 transition ${
+              isActive
+                ? "text-[#422AD5] bg-[#EBE9FA] rounded-lg font-semibold"
+                : "text-gray-700 hover:text-[#422AD5] bg-transparent"
+            }`
+          }
+        >
+          Service
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to={"/about"}
+          className={({ isActive }) =>
+            `px-3 py-2 transition ${
+              isActive
+                ? "text-[#422AD5] bg-[#EBE9FA] rounded-lg font-semibold"
+                : "text-gray-700 hover:text-[#422AD5] bg-transparent"
+            }`
+          }
+        >
+          About Us
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to={"/contact_us"}
+          className={({ isActive }) =>
+            `px-3 py-2 transition ${
+              isActive
+                ? "text-[#422AD5] bg-[#EBE9FA] rounded-lg font-semibold"
+                : "text-gray-700 hover:text-[#422AD5] bg-transparent"
+            }`
+          }
+        >
+          Contact Us
+        </NavLink>
+      </li>
+    </>
+  );
 
-    const links = <div className="space-x-5">
-    <NavLink to={'/home'}>Home</NavLink>
-    <NavLink to={'/service'}>Service</NavLink>
-    <NavLink to={'about'}>About Us</NavLink>
-    <NavLink to={'contact_us'}>Contact Us</NavLink>
-    </div>
   return (
-    <div >
-      <div className="px-10 navbar bg-base-100 shadow-sm">
-        <div className="navbar-start">
-          <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                {" "}
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
-                />{" "}
-              </svg>
-            </div>
-            <ul
-              tabIndex="-1"
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+    <div className="px-10 navbar bg-base-100 shadow-sm">
+      <div className="navbar-start flex items-center gap-2">
+    
+        <div className="dropdown lg:hidden">
+          <label tabIndex={0} className="btn btn-ghost">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
             >
-              {links}
-            </ul>
-          </div>
-          <a className="btn btn-ghost text-xl">SkillSwap</a>
-        </div>
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h8m-8 6h16"
+              />
+            </svg>
+          </label>
+          <ul
+            tabIndex={0}
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 p-2 shadow flex flex-col gap-2"
+          >
             {links}
           </ul>
         </div>
-        <div className="navbar-end">
-          <button className="btn">LogIn</button>
-        </div>
+
+        <NavLink to="/" className="btn btn-ghost text-xl font-bold text-[#422AD5]">
+          SkillSwap
+        </NavLink>
+      </div>
+
+      {/* Desktop menu */}
+      <div className="navbar-center hidden lg:flex">
+        <ul className="menu menu-horizontal px-1 flex items-center gap-2">{links}</ul>
+      </div>
+      <div className="navbar-end">
+        <button className="btn text-white bg-[#422AD5]">LogIn</button>
       </div>
     </div>
   );

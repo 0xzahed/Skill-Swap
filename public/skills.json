@@ -1,0 +1,74 @@
+[
+  {
+    "skillId": 1,
+    "skillName": "Beginner Guitar Lessons",
+    "providerName": "Alex Martin",
+    "providerEmail": "alex@skillswap.com",
+    "price": 20,
+    "rating": 4.8,
+    "slotsAvailable": 3,
+    "description": "Acoustic guitar classes for complete beginners.",
+    "image": "https://i.ibb.co.com/K8WngXT/anita-monteiro-f-EPEFm-VLDw-M-unsplash.jpg",
+    "category": "Music"
+  },
+  {
+    "skillId": 2,
+    "skillName": "Spoken English Practice",
+    "providerName": "Sara Hossain",
+    "providerEmail": "sara@skillswap.com",
+    "price": 10,
+    "rating": 4.6,
+    "slotsAvailable": 5,
+    "description": "Conversational English sessions for non-native speakers.",
+    "image": "https://i.postimg.cc/example2.png",
+    "category": "Language"
+  },
+  {
+    "skillId": 3,
+    "skillName": "Yoga for Beginners",
+    "providerName": "Rafiq Ahmed",
+    "providerEmail": "rafiq@skillswap.com",
+    "price": 15,
+    "rating": 4.9,
+    "slotsAvailable": 4,
+    "description": "Basic yoga classes to improve flexibility and mindfulness.",
+    "image": "https://i.postimg.cc/example3.png",
+    "category": "Health"
+  },
+  {
+    "skillId": 4,
+    "skillName": "Digital Marketing Basics",
+    "providerName": "Lina Karim",
+    "providerEmail": "lina@skillswap.com",
+    "price": 25,
+    "rating": 4.7,
+    "slotsAvailable": 6,
+    "description": "Learn the fundamentals of online marketing and social media.",
+    "image": "https://i.postimg.cc/example4.png",
+    "category": "Marketing"
+  },
+  {
+    "skillId": 5,
+    "skillName": "Introduction to Python",
+    "providerName": "Tariq Rahman",
+    "providerEmail": "tariq@skillswap.com",
+    "price": 30,
+    "rating": 4.8,
+    "slotsAvailable": 3,
+    "description": "Learn Python programming from scratch with hands-on exercises.",
+    "image": "https://i.postimg.cc/example5.png",
+    "category": "Programming"
+  },
+  {
+    "skillId": 6,
+    "skillName": "Photography Essentials",
+    "providerName": "Maya Akter",
+    "providerEmail": "maya@skillswap.com",
+    "price": 20,
+    "rating": 4.5,
+    "slotsAvailable": 4,
+    "description": "Learn photography techniques and composition for beginners.",
+    "image": "https://i.postimg.cc/example6.png",
+    "category": "Art"
+  }
+]
