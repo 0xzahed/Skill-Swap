@@ -43,7 +43,6 @@ const ContactUs = () => {
           </p>
         </div>
       </section>
-
       <section className="py-12 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">

@@ -55,7 +55,7 @@ const Header = () => {
             <div className="relative w-full h-full flex items-center">
               <div className="mx-auto px-4 lg:px-10">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-                  <div className="text-left space-y-4 z-10 pl-20">
+                  <div className="text-left space-y-4 z-10 lg:pl-20">
                     <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
                       {slide.title}
                     </h1>
