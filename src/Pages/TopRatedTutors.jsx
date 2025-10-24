@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { motion as Motion } from "framer-motion";
 
 const TopRatedTutors = () => {
   const [tutors, setTutors] = useState([]);
@@ -15,7 +16,7 @@ const TopRatedTutors = () => {
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-10">
           <h2 className="text-3xl font-bold text-gray-900 mb-2">
-            Top Rated Tutors
+            Top Rated Providers
           </h2>
           <p className="text-gray-600">
             Learn from the best experts in their fields
@@ -24,11 +25,14 @@ const TopRatedTutors = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {tutors.map(
             ({ id, name, skill, organization, rating, reviews, image }) => (
-              <div
+              <Motion.div
                 key={id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: false }}
                 className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
               >
-        
                 <div className="h-56">
                   <img
                     src={image}
@@ -53,7 +57,7 @@ const TopRatedTutors = () => {
                     </span>
                   </div>
                 </div>
-              </div>
+              </Motion.div>
             )
           )}
         </div>

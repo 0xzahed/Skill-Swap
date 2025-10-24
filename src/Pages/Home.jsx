@@ -1,4 +1,5 @@
 import React from "react";
+import { motion as Motion } from "framer-motion";
 import Header from "../Components/Header/Header";
 import Service from "./Service";
 import HowItWork from "./HowItWork";
@@ -6,17 +7,37 @@ import { useLoaderData } from "react-router-dom";
 import TopRatedTutors from "./TopRatedTutors";
 
 const Home = () => {
-  const skills = useLoaderData(); 
+  const skills = useLoaderData();
   console.log(skills);
 
   return (
     <div>
       <Header></Header>
-      <div id="services">
+      <Motion.div
+        id="services"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: false }}
+      >
         <Service skills={skills} />
-      </div>
-      <TopRatedTutors></TopRatedTutors>
-      <HowItWork />
+      </Motion.div>
+      <Motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: false }}
+      >
+        <TopRatedTutors></TopRatedTutors>
+      </Motion.div>
+      <Motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: false }}
+      >
+        <HowItWork />
+      </Motion.div>
     </div>
   );
 };

@@ -9,6 +9,7 @@ import "swiper/css/effect-fade";
 import AiImg from "../../assets/images/Ai.png";
 import DataAnalystImg from "../../assets/images/data_analytics.png";
 import MarketingImg from "../../assets/images/marketing.png";
+import { IoStar } from "react-icons/io5";
 
 const Header = () => {
   const slides = [
@@ -83,8 +84,8 @@ const Header = () => {
                         <p className="text-xs text-gray-600">Expert Tutors</p>
                       </div>
                       <div>
-                        <p className="text-2xl font-bold text-[#422AD5]">
-                          4.8★
+                        <p className="text-2xl font-bold text-[#422AD5] flex items-center gap-1">
+                          4.8<IoStar></IoStar>
                         </p>
                         <p className="text-xs text-gray-600">Average Rating</p>
                       </div>

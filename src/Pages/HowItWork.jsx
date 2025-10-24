@@ -1,4 +1,5 @@
 import React from "react";
+import { motion as Motion} from "framer-motion";
 import { FaUserPlus, FaSearch, FaHandshake, FaStar } from "react-icons/fa";
 
 const HowItWork = () => {
@@ -47,8 +48,12 @@ const HowItWork = () => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {steps.map((step, index) => (
-            <div
+            <Motion.div
               key={step.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: false }}
               className="relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 text-center hover:-translate-y-1"
             >
               <div className="absolute -top-4 -left-4 w-12 h-12 bg-[#422AD5] text-white rounded-full flex items-center justify-center text-xl font-bold shadow-lg">
@@ -67,7 +72,7 @@ const HowItWork = () => {
                   →
                 </div>
               )}
-            </div>
+            </Motion.div>
           ))}
         </div>
 
