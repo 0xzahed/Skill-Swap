@@ -11,6 +11,7 @@ import Register from "../Pages/Register";
 import SkillDetails from "../Pages/SkillDetails";
 import MyProfile from "../Pages/MyProfile";
 import ForgotPassword from "../Pages/ForgotPassword";
+import Error404 from "../Pages/Error404";
 
 const router = createBrowserRouter([
   {
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
         path: "forgot-password",
         Component: ForgotPassword,
       },
+      {
+        path: "*",
+        Component: Error404,
+      },
     ],
   },
   {
@@ -65,7 +70,15 @@ const router = createBrowserRouter([
         path: "register",
         Component: Register,
       },
+      // {
+      //   path: "*",
+      //   Component: Error404,
+      // },
     ],
+  },
+  {
+    path: "*",
+    Component: Error404,
   },
 ]);
 

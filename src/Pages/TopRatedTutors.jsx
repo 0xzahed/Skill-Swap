@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion as Motion } from "framer-motion";
+import { FaStar } from "react-icons/fa";
 
 const TopRatedTutors = () => {
   const [tutors, setTutors] = useState([]);
@@ -52,7 +53,7 @@ const TopRatedTutors = () => {
                   <div className="flex items-center justify-between text-sm">
                     <span className="text-gray-500">{reviews} Reviews</span>
                     <span className="flex items-center gap-1 font-semibold text-gray-700">
-                      <span className="text-yellow-500">⭐</span>
+                      <span className="text-yellow-500"><FaStar></FaStar> </span>
                       {rating}
                     </span>
                   </div>
