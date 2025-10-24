@@ -93,7 +93,7 @@ const NavBar = () => {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow flex flex-col gap-2"
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow flex flex-col gap-2 "
           >
             {links}
           </ul>
@@ -101,7 +101,7 @@ const NavBar = () => {
 
         <NavLink
           to="/"
-          className="btn btn-ghost text-xl font-bold text-[#422AD5]"
+          className="btn btn-ghost text-2xl font-bold text-[#422AD5]"
         >
           SkillSwap
         </NavLink>
@@ -109,7 +109,7 @@ const NavBar = () => {
 
       {/* Desktop menu */}
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1 flex items-center gap-2">
+        <ul className="menu menu-horizontal px-1 flex items-center gap-2 text-lg font-semibold">
           {links}
         </ul>
       </div>

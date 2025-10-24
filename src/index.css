@@ -2,9 +2,9 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
-* {
+/* * {
   font-family: "Urbanist", sans-serif;
-}
+} */
 
 nav a.active {
   color: blueviolet;
