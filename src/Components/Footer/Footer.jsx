@@ -1,5 +1,5 @@
 import React from "react";
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaRegCopyright } from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -115,8 +115,8 @@ const Footer = () => {
           </div>
         </div>
         <div className="border-t border-gray-800 mt-8 pt-8 text-center">
-          <p className="text-gray-400">
-            © {new Date().getFullYear()} SkillSwap. All rights reserved.
+          <p className="text-gray-400 flex justify-center items-center gap-1">
+            <FaRegCopyright></FaRegCopyright> {new Date().getFullYear()} SkillSwap. All rights reserved.
           </p>
         </div>
       </div>

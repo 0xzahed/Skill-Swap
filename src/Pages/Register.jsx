@@ -17,7 +17,7 @@ const Register = () => {
   const { createUser, googleSignIn } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  // Simplified password validation
+  // password validation
   const validatePassword = (password) => {
     const regex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
     return regex.test(password)
