@@ -24,7 +24,6 @@ const SkillDetails = () => {
   });
 
   useEffect(() => {
-    // Check if user is logged in
     if (!user) {
       navigate("/auth/login", {
         state: { from: `/skill/${id}` },
@@ -33,7 +32,6 @@ const SkillDetails = () => {
       return;
     }
 
-    // Fetch skill data
     const fetchSkill = () => {
       fetch("/skills.json")
         .then((response) => response.json())
@@ -41,7 +39,6 @@ const SkillDetails = () => {
           const foundSkill = skills.find((s) => s.skillId === parseInt(id));
           if (foundSkill) {
             setSkill(foundSkill);
-            // Pre-fill form with user data
             setFormData({
               name: user.displayName || "",
               email: user.email || "",
@@ -96,10 +93,8 @@ const SkillDetails = () => {
       return;
     }
 
-    // Show success message
     toast.success("Session booked successfully! We'll contact you soon.");
 
-    // Clear form
     setFormData({
       name: user.displayName || "",
       email: user.email || "",
@@ -137,10 +132,8 @@ const SkillDetails = () => {
       <Toaster position="top-right" />
 
       <div className="max-w-6xl mx-auto px-4">
-        {/* Skill Details Section */}
         <div className="bg-white rounded-xl shadow-lg overflow-hidden mb-8">
           <div className="md:flex">
-            {/* Image Section */}
             <div className="md:w-1/2">
               <img
                 src={skill.image}
@@ -148,8 +141,6 @@ const SkillDetails = () => {
                 className="w-full h-64 md:h-full object-cover"
               />
             </div>
-
-            {/* Details Section */}
             <div className="md:w-1/2 p-8">
               <div className="uppercase tracking-wide text-sm text-[#422AD5] font-semibold mb-2">
                 {skill.category}
@@ -163,7 +154,6 @@ const SkillDetails = () => {
                 {skill.description}
               </p>
 
-              {/* Provider Info */}
               <div className="bg-gray-50 rounded-lg p-4 mb-6">
                 <h3 className="font-semibold text-gray-800 mb-3 flex items-center gap-2">
                   <FaUser className="text-[#422AD5]" />
@@ -181,7 +171,6 @@ const SkillDetails = () => {
                 </div>
               </div>
 
-              {/* Price and Rating */}
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center gap-2">
                   <FaDollarSign className="text-green-600" />
@@ -198,8 +187,6 @@ const SkillDetails = () => {
                   </span>
                 </div>
               </div>
-
-              {/* Availability */}
               <div className="flex items-center gap-2 text-gray-700 mb-6">
                 <FaClock className="text-[#422AD5]" />
                 <span className="font-medium">Available Slots:</span>

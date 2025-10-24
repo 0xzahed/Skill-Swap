@@ -70,5 +70,30 @@
     "description": "Learn photography techniques and composition for beginners.",
     "image": "https://i.ibb.co.com/0yXpm527/photography.webp",
     "category": "Art"
+  },
+  {
+    "skillId": 7,
+    "skillName": "Cooking for Beginners",
+    "providerName": "Nusrat Rahman",
+    "providerEmail": "nusrat@skillswap.com",
+    "price": 15,
+    "rating": 4.7,
+    "slotsAvailable": 5,
+    "description": "Learn how to cook simple and delicious meals from scratch.",
+    "image": "https://i.ibb.co.com/Z6rzWK68/Learn-To-Cook-Beginners-Cooking-Guide-1200-1200x900-cropped.jpg",
+    "category": "Lifestyle"
+  },
+  {
+    "skillId": 8,
+    "skillName": "Graphic Design",
+    "providerName": "Kamal Hossain",
+    "providerEmail": "kamal@skillswap.com",
+    "price": 18,
+    "rating": 4.6,
+    "slotsAvailable": 4,
+    "description": "Master Canva tools to design posters, logos, and social media graphics.",
+
+    "image": "https://i.ibb.co.com/0VcC53FD/800w-v52-Hl-D1-MMGc.webp",
+    "category": "Design"
   }
 ]
