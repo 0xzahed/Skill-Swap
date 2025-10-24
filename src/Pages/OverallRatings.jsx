@@ -9,7 +9,7 @@ const OverallRatings = () => {
     { icon: <FaStar />, number: "4.9/5", label: "Average Rating" },
   ];
   return (
-    <div className="bg-white py-16 px-4">
+    <div className="bg-white px-4">
       <Motion.section
         className=" py-16 px-4"
         initial={{ opacity: 0, y: 50 }}

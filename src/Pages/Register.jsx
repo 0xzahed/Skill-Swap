@@ -44,12 +44,12 @@ const Register = () => {
         }
       })
       .then(() => {
-        toast.success("Account created successfully!");
-        setLoading(false);
-        navigate("/");
+        toast.success("Account created successfully!", { duration: 5000 });
+          setLoading(false);
+          navigate("/");
       })
       .catch((err) => {
-        toast.error(err.message);
+        toast.error(err.message, { duration: 5000 });
         setLoading(false);
       });
   };
@@ -60,12 +60,12 @@ const Register = () => {
     googleSignIn()
       .then((result) => {
         console.log(result);
-        toast.success("Account created successfully!");
-        setLoading(false);
-        navigate("/");
+        toast.success("Account created successfully!", { duration: 5000 });
+          setLoading(false);
+          navigate("/");
       })
       .catch((err) => {
-        toast.error(err.message);
+        toast.error(err.message, { duration: 5000 });
         setLoading(false);
       });
   };

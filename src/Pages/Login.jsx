@@ -26,9 +26,9 @@ const Login = () => {
       .then((userCredential) => {
         const user = userCredential.user;
         console.log("Login successful:", user);
-        toast.success("Login successful!");
-        setLoading(false);
-        navigate(from, { replace: true });
+        toast.success("Login successful!", { duration: 5000 });
+          setLoading(false);
+          navigate(from, { replace: true });
       })
       .catch((error) => {
         console.error("Login error:", error);
@@ -45,9 +45,9 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log("Google sign-in successful:", user);
-        toast.success("Login successful!");
-        setLoading(false);
-        navigate(from, { replace: true });
+        toast.success("Login successful!", { duration: 5000 });
+          setLoading(false);
+          navigate(from, { replace: true });
       })
       .catch((error) => {
         console.error("Google sign-in error:", error);
