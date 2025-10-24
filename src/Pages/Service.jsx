@@ -1,5 +1,6 @@
 import React from "react";
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Service = ({ skills }) => {
   const renderStars = (rating) => {
@@ -37,20 +38,20 @@ const Service = ({ skills }) => {
           <h3 className="text-lg font-bold text-gray-800 mb-2 text-left">
             {skillName}
           </h3>
-          
+
           <div className="flex items-center justify-between mb-3 w-full">
-            <div className="text-xl font-bold text-gray-900">
-              ${price}
-            </div>
+            <div className="text-xl font-bold text-gray-900">${price}</div>
             <div className="flex items-center gap-1">
               <div className="flex gap-1 text-xs">{renderStars(rating)}</div>
               <span className="text-gray-600 text-xs">({rating})</span>
             </div>
           </div>
 
-          <button className="w-full py-2 text-base font-semibold text-gray-700 bg-white border-2 border-gray-300 rounded-full hover:bg-gray-50 hover:border-gray-400 transition-all duration-300">
-            View Details
-          </button>
+          <Link to={`/skill/${skillId}`}>
+            <button className="w-full py-2 text-base font-semibold text-gray-700 bg-white border-2 border-gray-300 rounded-full hover:bg-gray-50 hover:border-gray-400 transition-all duration-300">
+              View Details
+            </button>
+          </Link>
         </div>
       ))}
     </div>

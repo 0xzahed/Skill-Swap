@@ -5,6 +5,12 @@ import Home from "../Pages/Home";
 import About from "../Pages/About";
 import ContactUs from "../Pages/ContactUs";
 import Service from "../Pages/Service";
+import Auth from "../Auth/Auth";
+import Login from "../Pages/Login";
+import Register from "../Pages/Register";
+import SkillDetails from "../Pages/SkillDetails";
+import MyProfile from "../Pages/MyProfile";
+import ForgotPassword from "../Pages/ForgotPassword";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +38,32 @@ const router = createBrowserRouter([
         path: "service",
         Component: Service,
         loader: () => fetch("/skills.json"),
+      },
+      {
+        path: "skill/:id",
+        Component: SkillDetails,
+      },
+      {
+        path: "profile",
+        Component: MyProfile,
+      },
+      {
+        path: "forgot-password",
+        Component: ForgotPassword,
+      },
+    ],
+  },
+  {
+    path: "auth",
+    Component: Auth,
+    children: [
+      {
+        path: "login",
+        Component: Login,
+      },
+      {
+        path: "register",
+        Component: Register,
       },
     ],
   },
