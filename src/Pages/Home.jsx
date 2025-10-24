@@ -5,6 +5,7 @@ import Service from "./Service";
 import HowItWork from "./HowItWork";
 import { useLoaderData } from "react-router-dom";
 import TopRatedTutors from "./TopRatedTutors";
+import OverallRatings from "./OverallRatings";
 
 const Home = () => {
   const skills = useLoaderData();
@@ -20,7 +21,7 @@ const Home = () => {
         transition={{ duration: 0.6 }}
         viewport={{ once: false }}
       >
-        <Service skills={skills} />
+        <Service skills={skills}></Service>
       </Motion.div>
       <Motion.div
         initial={{ opacity: 0, y: 50 }}
@@ -36,7 +37,10 @@ const Home = () => {
         transition={{ duration: 0.6 }}
         viewport={{ once: false }}
       >
-        <HowItWork />
+        <HowItWork></HowItWork>
+      </Motion.div>
+      <Motion.div>
+      <OverallRatings></OverallRatings>
       </Motion.div>
     </div>
   );

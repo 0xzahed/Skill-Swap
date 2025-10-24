@@ -29,7 +29,7 @@ const Service = ({ skills }) => {
   };
 
   return (
-    <div className="w-full py-12">
+    <div className="bg-white w-full py-12">
       <div
         className="text-center mb-12"
         initial={{ opacity: 0, y: 30 }}
@@ -49,12 +49,9 @@ const Service = ({ skills }) => {
       {/* Skills cards */}
       <div className="grid grid-cols-1 w-9/12 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mx-auto gap-6 p-4">
         {skills.map(({ skillId, skillName, image, rating, price }) => (
-          <Motion.div
+          <div
             key={skillId}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: false }}
+          
             className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 dark:bg-gray-800 dark:border-gray-700"
           >
             <div className="p-8">
@@ -90,7 +87,7 @@ const Service = ({ skills }) => {
                 </Link>
               </div>
             </div>
-          </Motion.div>
+          </div>
         ))}
       </div>
     </div>

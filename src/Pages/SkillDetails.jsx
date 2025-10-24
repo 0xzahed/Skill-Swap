@@ -128,11 +128,11 @@ const SkillDetails = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-[#F5F3FF] py-8">
       <Toaster position="top-right" />
 
       <div className="max-w-6xl mx-auto px-4">
-        <div className="bg-white rounded-xl shadow-lg overflow-hidden mb-8">
+        <div className=" rounded-xl shadow-lg overflow-hidden mb-8">
           <div className="md:flex">
             <div className="md:w-1/2">
               <img
@@ -154,7 +154,7 @@ const SkillDetails = () => {
                 {skill.description}
               </p>
 
-              <div className="bg-gray-50 rounded-lg p-4 mb-6">
+              <div className=" rounded-lg p-4 mb-6">
                 <h3 className="font-semibold text-gray-800 mb-3 flex items-center gap-2">
                   <FaUser className="text-[#422AD5]" />
                   Provider Information

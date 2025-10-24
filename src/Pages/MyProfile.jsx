@@ -25,23 +25,28 @@ const MyProfile = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  // Handle save profile update
   const handleSave = (e) => {
     e.preventDefault();
     setLoading(true);
 
-    updateProfile(user, formData)
+    updateProfile(user, {
+      displayName: formData.displayName,
+      photoURL: formData.photoURL,
+    })
       .then(() => {
         setUser({ ...user, ...formData });
         toast.success("Profile updated successfully!");
         setIsEditing(false);
       })
       .catch((err) => {
-        console.error(err);
-        toast.error("Failed to update profile");
+        console.error("Profile update failed:", err);
+        toast.error("Failed to update profile!");
       })
       .finally(() => setLoading(false));
   };
 
+  //handle cancel 
   const handleCancel = () => {
     setFormData({
       displayName: user.displayName || "",
@@ -58,7 +63,11 @@ const MyProfile = () => {
 
         <div className="flex justify-center mb-6">
           <img
-            src={formData.photoURL || user.photoURL || "https://i.postimg.cc/5y8zTvMg/default-avatar.png"}
+            src={
+              formData.photoURL ||
+              user.photoURL ||
+              ""
+            }
             alt="Profile"
             className="w-24 h-24 rounded-full object-cover ring-2 ring-purple-500"
           />
@@ -66,8 +75,12 @@ const MyProfile = () => {
 
         {!isEditing ? (
           <div className="space-y-4 text-center">
-            <p><strong>Name:</strong> {user.displayName || "Not provided"}</p>
-            <p><strong>Email:</strong> {user.email}</p>
+            <p>
+              <strong>Name:</strong> {user.displayName || "Not provided"}
+            </p>
+            <p>
+              <strong>Email:</strong> {user.email}
+            </p>
             <button
               onClick={() => setIsEditing(true)}
               className="mt-4 px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700"
@@ -76,6 +89,7 @@ const MyProfile = () => {
             </button>
           </div>
         ) : (
+          
           <form onSubmit={handleSave} className="space-y-4">
             <input
               type="text"
@@ -83,15 +97,15 @@ const MyProfile = () => {
               value={formData.displayName}
               onChange={handleChange}
               placeholder="Full Name"
-              className="w-full px-3 py-2 border rounded text-sm"
+              className="w-full px-3 py-2 border rounded text-sm focus:outline-none focus:ring focus:ring-purple-200"
             />
             <input
               type="url"
               name="photoURL"
               value={formData.photoURL}
               onChange={handleChange}
-              placeholder="Photo URL"
-              className="w-full px-3 py-2 border rounded text-sm"
+              placeholder="Photo URL (optional)"
+              className="w-full px-3 py-2 border rounded text-sm focus:outline-none focus:ring focus:ring-purple-200"
             />
             <div className="flex justify-between">
               <button
