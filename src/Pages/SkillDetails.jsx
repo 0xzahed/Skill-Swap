@@ -8,6 +8,12 @@ import {
   FaEnvelope,
   FaClock,
   FaDollarSign,
+  FaCalendarAlt,
+  FaShoppingCart,
+  FaPlayCircle,
+  FaSignal,
+  FaUsers,
+  FaCheckCircle,
 } from "react-icons/fa";
 import { AuthContext } from "../providers/AuthProvider";
 import toast, { Toaster } from "react-hot-toast";
@@ -18,20 +24,8 @@ const SkillDetails = () => {
   const { user } = use(AuthContext);
   const [skill, setSkill] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-  });
 
   useEffect(() => {
-    if (!user) {
-      navigate("/auth/login", {
-        state: { from: `/skill/${id}` },
-        replace: true,
-      });
-      return;
-    }
-
     const fetchSkill = () => {
       fetch("/skills.json")
         .then((response) => response.json())
@@ -39,12 +33,8 @@ const SkillDetails = () => {
           const foundSkill = skills.find((s) => s.skillId === parseInt(id));
           if (foundSkill) {
             setSkill(foundSkill);
-            setFormData({
-              name: user.displayName || "",
-              email: user.email || "",
-            });
           } else {
-            toast.error("Skill not found!");
+            toast.error("Course not found!");
             navigate("/");
           }
           setLoading(false);
@@ -77,33 +67,48 @@ const SkillDetails = () => {
     return stars;
   };
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleBookSession = (e) => {
-    e.preventDefault();
-
-    if (!formData.name.trim() || !formData.email.trim()) {
-      toast.error("Please fill in all fields!");
+  const handleBuyCourse = () => {
+    if (!user) {
+      toast.error("Please login to purchase this course!");
+      navigate("/auth/login", { state: { from: `/skill/${id}` } });
       return;
     }
 
-    toast.success("Session booked successfully! We'll contact you soon.");
+    // Simple purchase logic
+    const purchase = {
+      courseId: skill.skillId,
+      courseName: skill.skillName,
+      price: skill.price,
+      provider: skill.providerName,
+      purchaseDate: new Date().toISOString(),
+      userName: user.displayName || user.email,
+    };
 
-    setFormData({
-      name: user.displayName || "",
-      email: user.email || "",
-    });
+    // Save to localStorage (simple approach)
+    const existingPurchases = JSON.parse(
+      localStorage.getItem("myCourses") || "[]"
+    );
+
+    // Check if already purchased
+    const alreadyPurchased = existingPurchases.some(
+      (p) => p.courseId === skill.skillId
+    );
+    if (alreadyPurchased) {
+      toast.success("You already own this course!");
+      navigate("/my-bookings");
+      return;
+    }
+
+    existingPurchases.push(purchase);
+    localStorage.setItem("myCourses", JSON.stringify(existingPurchases));
+
+    toast.success("Course purchased successfully! 🎉");
+    navigate("/my-bookings");
   };
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center bg-base-200">
         <div className="loading loading-spinner loading-lg text-[#422AD5]"></div>
       </div>
     );
@@ -111,9 +116,9 @@ const SkillDetails = () => {
 
   if (!skill) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center bg-base-200">
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">
+          <h2 className="text-2xl font-bold text-base-content mb-4">
             Skill not found
           </h2>
           <button
@@ -128,11 +133,11 @@ const SkillDetails = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#F5F3FF] py-8">
+    <div className="min-h-screen bg-base-200 py-8">
       <Toaster position="top-right" />
 
       <div className="max-w-6xl mx-auto px-4">
-        <div className=" rounded-xl shadow-lg overflow-hidden mb-8">
+        <div className="bg-base-100 rounded-xl shadow-lg overflow-hidden mb-8">
           <div className="md:flex">
             <div className="md:w-1/2">
               <img
@@ -146,26 +151,26 @@ const SkillDetails = () => {
                 {skill.category}
               </div>
 
-              <h1 className="text-3xl font-bold text-gray-900 mb-4">
+              <h1 className="text-3xl font-bold text-base-content mb-4">
                 {skill.skillName}
               </h1>
 
-              <p className="text-gray-600 mb-6 leading-relaxed">
+              <div className="text-base-content/70 mb-6 leading-relaxed text-justify">
                 {skill.description}
-              </p>
+              </div>
 
-              <div className=" rounded-lg p-4 mb-6">
-                <h3 className="font-semibold text-gray-800 mb-3 flex items-center gap-2">
+              <div className="bg-base-200 rounded-lg p-4 mb-6">
+                <h3 className="font-semibold text-base-content mb-3 flex items-center gap-2">
                   <FaUser className="text-[#422AD5]" />
                   Provider Information
                 </h3>
                 <div className="space-y-2">
-                  <p className="text-gray-700">
+                  <p className="text-base-content/80">
                     <span className="font-medium">Name:</span>{" "}
                     {skill.providerName}
                   </p>
-                  <p className="text-gray-700 flex items-center gap-2">
-                    <FaEnvelope className="text-gray-500" />
+                  <p className="text-base-content/80 flex items-center gap-2">
+                    <FaEnvelope className="text-base-content/60" />
                     {skill.providerEmail}
                   </p>
                 </div>
@@ -173,87 +178,117 @@ const SkillDetails = () => {
 
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center gap-2">
-                  <FaDollarSign className="text-green-600" />
-                  <span className="text-3xl font-bold text-gray-900">
+                  <span className="text-4xl font-bold text-green-600">
                     ${skill.price}
                   </span>
-                  <span className="text-gray-600">per session</span>
                 </div>
 
                 <div className="flex items-center gap-2">
                   <div className="flex gap-1">{renderStars(skill.rating)}</div>
-                  <span className="text-gray-700 font-medium">
-                    ({skill.rating})
+                  <span className="text-base-content/80 font-medium">
+                    {skill.rating} ({skill.students?.toLocaleString()} students)
                   </span>
                 </div>
               </div>
-              <div className="flex items-center gap-2 text-gray-700 mb-6">
-                <FaClock className="text-[#422AD5]" />
-                <span className="font-medium">Available Slots:</span>
-                <span className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-sm font-medium">
-                  {skill.slotsAvailable} remaining
-                </span>
+
+              {/* Course Stats */}
+              <div className="grid grid-cols-3 gap-4 mb-6">
+                <div className="text-center p-3 bg-base-200 rounded-lg">
+                  <FaClock className="text-[#422AD5] mx-auto mb-2" />
+                  <p className="text-sm font-semibold text-base-content">
+                    {skill.duration}
+                  </p>
+                  <p className="text-xs text-base-content/60">Duration</p>
+                </div>
+                <div className="text-center p-3 bg-base-200 rounded-lg">
+                  <FaPlayCircle className="text-[#422AD5] mx-auto mb-2" />
+                  <p className="text-sm font-semibold text-base-content">
+                    {skill.lectures} lectures
+                  </p>
+                  <p className="text-xs text-base-content/60">Lessons</p>
+                </div>
+                <div className="text-center p-3 bg-base-200 rounded-lg">
+                  <FaSignal className="text-[#422AD5] mx-auto mb-2" />
+                  <p className="text-sm font-semibold text-base-content">
+                    {skill.level}
+                  </p>
+                  <p className="text-xs text-base-content/60">Level</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Book Session Form */}
-        <div className="bg-white rounded-xl shadow-lg p-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-            Book a Session
+        {/* Buy Course Section */}
+        <div className="bg-base-100 rounded-xl shadow-lg p-8">
+          <h2 className="text-3xl font-bold text-base-content mb-6 text-center">
+            What you'll learn
           </h2>
 
-          <form
-            onSubmit={handleBookSession}
-            className="max-w-md mx-auto space-y-6"
-          >
-            <div>
-              <label
-                htmlFor="name"
-                className="block text-sm font-medium text-gray-700 mb-2"
-              >
-                Full Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleInputChange}
-                required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#422AD5] focus:border-transparent"
-                placeholder="Enter your full name"
-              />
+          <div className="max-w-4xl mx-auto">
+            {/* Course Includes */}
+            <div className="grid md:grid-cols-2 gap-4 mb-8">
+              <div className="flex items-start gap-3">
+                <FaCheckCircle className="text-green-500 mt-1 shrink-0" />
+                <p className="text-base-content/80">
+                  Lifetime access to course materials
+                </p>
+              </div>
+              <div className="flex items-start gap-3">
+                <FaCheckCircle className="text-green-500 mt-1 shrink-0" />
+                <p className="text-base-content/80">
+                  {skill.lectures} downloadable lectures
+                </p>
+              </div>
+              <div className="flex items-start gap-3">
+                <FaCheckCircle className="text-green-500 mt-1 shrink-0" />
+                <p className="text-base-content/80">
+                  Certificate of completion
+                </p>
+              </div>
+              <div className="flex items-start gap-3">
+                <FaCheckCircle className="text-green-500 mt-1 shrink-0" />
+                <p className="text-base-content/80">
+                  Access on mobile and desktop
+                </p>
+              </div>
             </div>
 
-            <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-gray-700 mb-2"
-              >
-                Email Address
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                required
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#422AD5] focus:border-transparent"
-                placeholder="Enter your email address"
-              />
-            </div>
+            {/* Price and Buy Button */}
+            <div className="bg-base-200 rounded-lg p-6 border-2 border-[#422AD5]/20">
+              <div className="flex items-center justify-between mb-6">
+                <div>
+                  <p className="text-base-content/70 mb-1">Course Price</p>
+                  <p className="text-4xl font-bold text-green-600">
+                    ${skill.price}
+                  </p>
+                </div>
+                <div className="text-right">
+                  <p className="text-sm text-base-content/70">
+                    {skill.students?.toLocaleString()} students
+                  </p>
+                  <div className="flex items-center gap-1 justify-end">
+                    {renderStars(skill.rating)}
+                    <span className="text-sm text-base-content/70 ml-2">
+                      ({skill.rating})
+                    </span>
+                  </div>
+                </div>
+              </div>
 
-            <button
-              type="submit"
-              className="w-full bg-[#422AD5] text-white py-3 px-6 rounded-lg font-medium hover:bg-[#3a1fb8] transition-colors duration-200 flex items-center justify-center gap-2"
-            >
-              <FaClock />
-              Book Session
-            </button>
-          </form>
+              <button
+                onClick={handleBuyCourse}
+                className="w-full bg-[#422AD5] text-white py-4 px-6 rounded-lg font-bold text-lg hover:bg-[#3a1fb8] transition-colors duration-200 flex items-center justify-center gap-2"
+              >
+                <FaShoppingCart />
+                Buy Now
+              </button>
+
+              <p className="text-center text-sm text-base-content/70 mt-4">
+                30-Day Money-Back Guarantee
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

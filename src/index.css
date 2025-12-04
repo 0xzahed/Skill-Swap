@@ -1,6 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap");
 @import "tailwindcss";
+
 @plugin "daisyui";
+
+@theme {
+  --color-primary: #422ad5;
+  --color-primary-focus: #3319b0;
+  --color-secondary: #8b7eff;
+  --color-accent: #ebe9fa;
+}
 
 /* * {
   font-family: "Urbanist", sans-serif;
@@ -8,4 +16,20 @@
 
 nav a.active {
   color: blueviolet;
+}
+
+/* Light theme */
+:root {
+  --base-100: #ffffff;
+  --base-200: #f5f3ff;
+  --base-300: #e5e6e6;
+  --base-content: #1f2937;
+}
+
+/* Dark theme */
+[data-theme="dark"] {
+  --base-100: #000000;
+  --base-200: #0d0d0d;
+  --base-300: #1a1a1a;
+  --base-content: #e5e7eb;
 }

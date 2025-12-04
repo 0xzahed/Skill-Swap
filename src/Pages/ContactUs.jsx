@@ -1,8 +1,6 @@
 import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaClock } from "react-icons/fa";
 
 const ContactUs = () => {
- 
-
   const contactInfo = [
     {
       icon: <FaEnvelope className="text-2xl" />,
@@ -34,11 +32,11 @@ const ContactUs = () => {
   ];
 
   return (
-    <div className=" bg-gray-50">
-      <section className="bg-[#422AD5] text-white py-16 px-4">
+    <div className="bg-base-100">
+      <section className="bg-primary text-white py-16 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-3xl md:text-5xl font-bold mb-4">Contact Us</h1>
-          <p className="text-lg text-purple-100">
+          <p className="text-lg text-white/80">
             Have questions? We'd love to hear from you.
           </p>
         </div>
@@ -49,16 +47,16 @@ const ContactUs = () => {
             {contactInfo.map((info, index) => (
               <div
                 key={index}
-                className="bg-white p-6 rounded-lg shadow text-center"
+                className="bg-base-100 border border-base-300 p-6 rounded-lg shadow hover:shadow-lg hover:border-primary transition-all duration-300 text-center"
               >
                 <div className={`${info.color} mb-4 flex justify-center`}>
                   {info.icon}
                 </div>
-                <h3 className="text-lg font-bold text-gray-800 mb-3">
+                <h3 className="text-lg font-bold text-base-content mb-3">
                   {info.title}
                 </h3>
                 {info.details.map((detail, i) => (
-                  <p key={i} className="text-gray-600 text-sm mb-1">
+                  <p key={i} className="text-base-content/70 text-sm mb-1">
                     {detail}
                   </p>
                 ))}

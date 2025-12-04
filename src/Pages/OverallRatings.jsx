@@ -9,7 +9,7 @@ const OverallRatings = () => {
     { icon: <FaStar />, number: "4.9/5", label: "Average Rating" },
   ];
   return (
-    <div className="bg-white px-4">
+    <div className="bg-base-100 px-4">
       <Motion.section
         className=" py-16 px-4"
         initial={{ opacity: 0, y: 50 }}
@@ -18,22 +18,21 @@ const OverallRatings = () => {
         viewport={{ once: false }}
       >
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-base-content mb-12">
             Our Impact in Numbers
           </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 shadow-xl p-20 rounded-lg">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 shadow-xl p-20 rounded-lg bg-base-200">
             {stats.map((stat, index) => (
-              <div
-                key={index}
-                className="text-center"
-              >
-                <div className="text-3xl text-[#422AD5] mb-2 flex justify-center">
+              <div key={index} className="text-center">
+                <div className="text-3xl text-primary mb-2 flex justify-center">
                   {stat.icon}
                 </div>
-                <div className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">
+                <div className="text-3xl md:text-4xl font-bold text-base-content mb-2">
                   {stat.number}
                 </div>
-                <div className="text-gray-600 font-medium">{stat.label}</div>
+                <div className="text-base-content/70 font-medium">
+                  {stat.label}
+                </div>
               </div>
             ))}
           </div>

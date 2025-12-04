@@ -1,28 +1,23 @@
 import React from "react";
 import { motion } from "framer-motion";
-import {
-  FaHandshake,
-  FaGlobe,
-  FaLightbulb,
-} from "react-icons/fa";
+import { FaHandshake, FaGlobe, FaLightbulb } from "react-icons/fa";
 
 const About = () => {
-
   const features = [
     {
-      icon: <FaGlobe className="text-4xl text-[#422AD5] mb-4" />,
+      icon: <FaGlobe className="text-4xl text-primary mb-4" />,
       title: "Global Community",
       description:
         "Connect with learners and tutors from around the world in our diverse skill-sharing community.",
     },
     {
-      icon: <FaLightbulb className="text-4xl text-[#422AD5] mb-4" />,
+      icon: <FaLightbulb className="text-4xl text-primary mb-4" />,
       title: "Learn Anything",
       description:
         "From coding and design to cooking and music - find experts in virtually any skill you want to learn.",
     },
     {
-      icon: <FaHandshake className="text-4xl text-[#422AD5] mb-4" />,
+      icon: <FaHandshake className="text-4xl text-primary mb-4" />,
       title: "Trusted Platform",
       description:
         "Secure payments, verified tutors, and a rating system ensure quality learning experiences.",
@@ -30,10 +25,10 @@ const About = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-base-100">
       {/* Hero Section */}
       <motion.section
-        className="bg-gradient-to-r from-[#422AD5] to-[#3319B0] text-white py-20 px-4"
+        className="bg-linear-to-r from-primary to-primary-focus text-white py-20 px-4"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
@@ -61,16 +56,16 @@ const About = () => {
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
+              <h2 className="text-3xl md:text-4xl font-bold text-base-content mb-6">
                 Our Mission
               </h2>
-              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+              <p className="text-lg text-base-content/70 mb-6 leading-relaxed">
                 At SkillSwap, we believe that everyone has something valuable to
                 teach and something new to learn. Our mission is to create a
                 world where knowledge flows freely, connecting passionate
                 learners with expert tutors across all disciplines.
               </p>
-              <p className="text-lg text-gray-600 leading-relaxed">
+              <p className="text-lg text-base-content/70 leading-relaxed">
                 We're breaking down barriers to education by making high-quality
                 learning accessible, affordable, and flexible for everyone,
                 everywhere.
@@ -96,22 +91,20 @@ const About = () => {
         viewport={{ once: false }}
       >
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-base-content mb-12">
             Why Choose SkillSwap?
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             {features.map((feature, index) => (
               <div
                 key={index}
-                className="text-center bg-white p-8 rounded-xl shadow-lg hover:shadow-xl "
+                className="text-center bg-base-100 border border-base-300 p-8 rounded-xl shadow-lg hover:shadow-xl hover:border-primary transition-all duration-300"
               >
                 <div className="flex justify-center mb-4">{feature.icon}</div>
-                <h3 className="text-xl font-bold text-gray-800 mb-4">
+                <h3 className="text-xl font-bold text-base-content mb-4">
                   {feature.title}
                 </h3>
-                <p className="text-gray-600">
-                  {feature.description}
-                </p>
+                <p className="text-base-content/70">{feature.description}</p>
               </div>
             ))}
           </div>

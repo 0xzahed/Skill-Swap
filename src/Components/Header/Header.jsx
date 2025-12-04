@@ -32,7 +32,7 @@ const Header = () => {
   ];
 
   return (
-    <div className="relative w-full h-[400px] md:h-[450px] bg-gradient-to-br from-[#422AD5]/10 to-purple-100/30">
+    <div className="relative w-full h-[400px] md:h-[450px] bg-linear-to-br from-primary/10 to-base-200">
       <Swiper
         modules={[Autoplay, Pagination, EffectFade]}
         spaceBetween={0}
@@ -56,38 +56,42 @@ const Header = () => {
               <div className="mx-auto px-4 lg:px-10">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                   <div className="text-left space-y-4 z-10 lg:pl-20">
-                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
+                    <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-base-content leading-tight">
                       {slide.title}
                     </h1>
-                    <p className="text-base md:text-lg text-gray-600 max-w-xl">
+                    <p className="text-base md:text-lg text-base-content/70 max-w-xl">
                       {slide.subtitle}
                     </p>
 
                     <div className="flex flex-wrap gap-4 pt-4">
-                      <button className="bg-[#422AD5] text-white px-6 py-3 rounded-xl font-semibold hover:bg-[#3319B0] transition-colors duration-300">
+                      <button className="btn btn-primary text-white px-6 py-3 rounded-xl font-semibold">
                         Get Started
                       </button>
-                      <button className="bg-white text-[#422AD5] px-6 py-3 rounded-xl font-semibold border-2 border-[#422AD5] hover:bg-[#422AD5] hover:text-white transition-colors duration-300">
+                      <button className="btn btn-outline btn-primary px-6 py-3 rounded-xl font-semibold">
                         Learn More
                       </button>
                     </div>
 
                     <div className="flex gap-6 pt-4">
                       <div>
-                        <p className="text-2xl font-bold text-[#422AD5]">
-                          1000+
+                        <p className="text-2xl font-bold text-primary">1000+</p>
+                        <p className="text-xs text-base-content/70">
+                          Active Learners
                         </p>
-                        <p className="text-xs text-gray-600">Active Learners</p>
                       </div>
                       <div>
-                        <p className="text-2xl font-bold text-[#422AD5]">50+</p>
-                        <p className="text-xs text-gray-600">Expert Tutors</p>
+                        <p className="text-2xl font-bold text-primary">50+</p>
+                        <p className="text-xs text-base-content/70">
+                          Expert Tutors
+                        </p>
                       </div>
                       <div>
-                        <p className="text-2xl font-bold text-[#422AD5] flex items-center gap-1">
+                        <p className="text-2xl font-bold text-primary flex items-center gap-1">
                           4.8<IoStar></IoStar>
                         </p>
-                        <p className="text-xs text-gray-600">Average Rating</p>
+                        <p className="text-xs text-base-content/70">
+                          Average Rating
+                        </p>
                       </div>
                     </div>
                   </div>

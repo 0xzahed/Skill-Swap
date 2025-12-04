@@ -13,13 +13,13 @@ const TopRatedTutors = () => {
   }, []);
 
   return (
-    <div className="bg-white py-12">
+    <div className="bg-base-100 py-12">
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-10">
-          <h2 className="text-3xl font-bold text-gray-900 mb-2">
+          <h2 className="text-3xl font-bold text-base-content mb-2">
             Top Rated Providers
           </h2>
-          <p className="text-gray-600">
+          <p className="text-base-content/70">
             Learn from the best experts in their fields
           </p>
         </div>
@@ -32,7 +32,7 @@ const TopRatedTutors = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
                 viewport={{ once: false }}
-                className="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300"
+                className="bg-base-100 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 border border-base-300"
               >
                 <div className="h-56">
                   <img
@@ -43,17 +43,23 @@ const TopRatedTutors = () => {
                 </div>
 
                 <div className="p-4">
-                  <h3 className="text-lg font-bold text-gray-900 mb-1">
+                  <h3 className="text-lg font-bold text-base-content mb-1">
                     {name}
                   </h3>
-                  <p className="text-sm text-gray-600 mb-2">{organization}</p>
-                  <p className="text-[#422AD5] font-semibold text-sm mb-3">
+                  <p className="text-sm text-base-content/70 mb-2">
+                    {organization}
+                  </p>
+                  <p className="text-primary font-semibold text-sm mb-3">
                     {skill}
                   </p>
                   <div className="flex items-center justify-between text-sm">
-                    <span className="text-gray-500">{reviews} Reviews</span>
-                    <span className="flex items-center gap-1 font-semibold text-gray-700">
-                      <span className="text-yellow-500"><FaStar></FaStar> </span>
+                    <span className="text-base-content/60">
+                      {reviews} Reviews
+                    </span>
+                    <span className="flex items-center gap-1 font-semibold text-base-content">
+                      <span className="text-yellow-500">
+                        <FaStar></FaStar>{" "}
+                      </span>
                       {rating}
                     </span>
                   </div>

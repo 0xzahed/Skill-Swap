@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import { CiUser } from "react-icons/ci";
 import { FiLogOut } from "react-icons/fi";
+import ThemeToggle from "../ThemeToggle/ThemeToggle";
 
 const NavBar = () => {
   const { user, logOut } = use(AuthContext);
@@ -24,8 +25,8 @@ const NavBar = () => {
           className={({ isActive }) =>
             `px-3 py-2 transition ${
               isActive
-                ? "text-[#422AD5] bg-[#EBE9FA] rounded-lg font-semibold"
-                : "text-gray-700 hover:text-[#422AD5] bg-transparent"
+                ? "text-primary bg-primary/10 rounded-lg font-semibold"
+                : "text-base-content hover:text-primary bg-transparent"
             }`
           }
         >
@@ -33,12 +34,18 @@ const NavBar = () => {
         </NavLink>
       </li>
       <li>
-        <a
-          href="/#services"
-          className="px-3 py-2 transition text-gray-700 hover:text-[#422AD5] bg-transparent"
+        <NavLink
+          to={"/service"}
+          className={({ isActive }) =>
+            `px-3 py-2 transition ${
+              isActive
+                ? "text-primary bg-primary/10 rounded-lg font-semibold"
+                : "text-base-content hover:text-primary bg-transparent"
+            }`
+          }
         >
           Service
-        </a>
+        </NavLink>
       </li>
       <li>
         <NavLink
@@ -46,8 +53,8 @@ const NavBar = () => {
           className={({ isActive }) =>
             `px-3 py-2 transition ${
               isActive
-                ? "text-[#422AD5] bg-[#EBE9FA] rounded-lg font-semibold"
-                : "text-gray-700 hover:text-[#422AD5] bg-transparent"
+                ? "text-primary bg-primary/10 rounded-lg font-semibold"
+                : "text-base-content hover:text-primary bg-transparent"
             }`
           }
         >
@@ -55,13 +62,23 @@ const NavBar = () => {
         </NavLink>
       </li>
       <li>
+        <a
+          href="https://wa.me/8801744546898"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-3 py-2 transition text-base-content hover:text-primary bg-transparent"
+        >
+          Support
+        </a>
+      </li>
+      <li>
         <NavLink
           to={"/contact_us"}
           className={({ isActive }) =>
             `px-3 py-2 transition ${
               isActive
-                ? "text-[#422AD5] bg-[#EBE9FA] rounded-lg font-semibold"
-                : "text-gray-700 hover:text-[#422AD5] bg-transparent"
+                ? "text-primary bg-primary/10 rounded-lg font-semibold"
+                : "text-base-content hover:text-primary bg-transparent"
             }`
           }
         >
@@ -101,7 +118,7 @@ const NavBar = () => {
 
         <NavLink
           to="/"
-          className="btn btn-ghost text-2xl font-bold text-[#422AD5]"
+          className="btn btn-ghost text-2xl font-bold text-primary"
         >
           SkillSwap
         </NavLink>
@@ -115,76 +132,85 @@ const NavBar = () => {
       </div>
 
       <div className="navbar-end">
-        {user ? (
-          <div className="flex items-center gap-3">
-            {/* Profile Dropdown */}
-            <div className="dropdown dropdown-end">
-              <div
-                tabIndex={0}
-                role="button"
-                className="btn btn-ghost btn-circle avatar"
-                title={user.displayName || "User Profile"}
-              >
-                <div className="w-10 rounded-full ring-2 ring-[#422AD5] ring-offset-2">
-                  <img
-                    alt="User Avatar"
-                    src={
-                      user.photoURL ||
-                      "https://i.postimg.cc/5y8zTvMg/default-avatar.png"
-                    }
-                    onError={(e) => {
-                      e.target.src =
-                        "https://i.postimg.cc/5y8zTvMg/default-avatar.png";
-                    }}
-                  />
+        <div className="flex items-center gap-3">
+          <ThemeToggle />
+          {user ? (
+            <>
+              {/* Profile Dropdown */}
+              <div className="dropdown dropdown-end">
+                <div
+                  tabIndex={0}
+                  role="button"
+                  className="btn btn-ghost btn-circle avatar"
+                  title={user.displayName || "User Profile"}
+                >
+                  <div className="w-10 rounded-full ring-2 ring-primary ring-offset-2 ring-offset-base-100">
+                    <img
+                      alt="User Avatar"
+                      src={
+                        user.photoURL ||
+                        "https://i.postimg.cc/5y8zTvMg/default-avatar.png"
+                      }
+                      onError={(e) => {
+                        e.target.src =
+                          "https://i.postimg.cc/5y8zTvMg/default-avatar.png";
+                      }}
+                    />
+                  </div>
                 </div>
+                <ul
+                  tabIndex={0}
+                  className="menu menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow-lg border border-base-300 absolute right-0"
+                >
+                  <li className="menu-title px-3 py-2">
+                    <span className="text-primary font-semibold">
+                      {user.displayName || "User"}
+                    </span>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/profile"
+                      className="flex items-center gap-2 px-3 py-2 hover:bg-primary/10 rounded-lg"
+                    >
+                      <CiUser></CiUser>
+                      My Profile
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      to="/my-bookings"
+                      className="flex items-center gap-2 px-3 py-2 hover:bg-primary/10 rounded-lg"
+                    >
+                      <CiUser></CiUser>
+                      My Bookings
+                    </NavLink>
+                  </li>
+                  <li>
+                    <button
+                      onClick={handleLogout}
+                      className="flex items-center gap-2 px-3 py-2 hover:bg-error/10 hover:text-error rounded-lg w-full text-left"
+                    >
+                      <FiLogOut></FiLogOut>
+                      Logout
+                    </button>
+                  </li>
+                </ul>
               </div>
-              <ul
-                tabIndex={0}
-                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow-lg border absolute right-0"
+            </>
+          ) : (
+            <>
+              <Link
+                to="/auth/login"
+                className="btn btn-outline btn-primary btn-sm"
               >
-                <li className="menu-title px-3 py-2">
-                  <span className="text-[#422AD5] font-semibold">
-                    {user.displayName || "User"}
-                  </span>
-                </li>
-                <li>
-                  <NavLink
-                    to="/profile"
-                    className="flex items-center gap-2 px-3 py-2 hover:bg-[#EBE9FA] rounded-lg"
-                  >
-                    <CiUser></CiUser>
-                    My Profile
-                  </NavLink>
-                </li>
-                <li>
-                  <button
-                    onClick={handleLogout}
-                    className="flex items-center gap-2 px-3 py-2 hover:bg-red-50 hover:text-red-600 rounded-lg w-full text-left"
-                  >
-                    <FiLogOut></FiLogOut>
-                    Logout
-                  </button>
-                </li>
-              </ul>
-            </div>
-          </div>
-        ) : (
-          <div className="flex items-center gap-2">
-            <Link
-              to="/auth/login"
-              className="btn btn-outline btn-sm text-[#422AD5] border-[#422AD5] hover:bg-[#422AD5] hover:text-white"
-            >
-              Login
-            </Link>
-            <Link
-              to="/auth/register"
-              className="btn btn-sm text-white bg-[#422AD5] hover:bg-[#3a1fb8]"
-            >
-              Sign Up
-            </Link>
-          </div>
-        )}
+                Login
+              </Link>
+              <Link to="/auth/register" className="btn btn-primary btn-sm">
+                Sign Up
+              </Link>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );

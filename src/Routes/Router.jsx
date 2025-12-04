@@ -12,6 +12,7 @@ import SkillDetails from "../Pages/SkillDetails";
 import MyProfile from "../Pages/MyProfile";
 import ForgotPassword from "../Pages/ForgotPassword";
 import Error404 from "../Pages/Error404";
+import MyBookings from "../Pages/MyBookings";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
       {
         path: "profile",
         Component: MyProfile,
+      },
+      {
+        path: "my-bookings",
+        Component: MyBookings,
       },
       {
         path: "forgot-password",
