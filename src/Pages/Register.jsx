@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProvider";
 import { FcGoogle } from "react-icons/fc";
-import { FaEye, FaEyeSlash, FaUser, FaEnvelope, FaLock, FaImage, FaStar, FaUsers, FaGraduationCap } from "react-icons/fa";
+import { FaEye, FaEyeSlash, FaUser, FaEnvelope, FaLock, FaStar, FaUsers, FaGraduationCap } from "react-icons/fa";
 import toast, { Toaster } from "react-hot-toast";
 import { updateProfile } from "firebase/auth";
 import { motion } from "framer-motion";
@@ -16,7 +16,6 @@ const perks = [
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [photoURL, setPhotoURL] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -38,7 +37,7 @@ const Register = () => {
     setLoading(true);
     createUser(email, password)
       .then((cred) => {
-        if (name || photoURL) return updateProfile(cred.user, { displayName: name, photoURL });
+        if (name) return updateProfile(cred.user, { displayName: name });
       })
       .then(() => {
         toast.success("Account created! Welcome to SkillSwap 🎉");
@@ -153,19 +152,6 @@ const Register = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="input input-bordered w-full bg-base-100 border-base-300 focus:border-primary text-sm"
-              />
-            </label>
-
-            <label className="flex flex-col gap-1.5">
-              <span className="text-xs font-semibold text-base-content/60 flex items-center gap-1.5">
-                <FaImage size={11} /> Photo URL <span className="text-base-content/30">(optional)</span>
-              </span>
-              <input
-                type="url"
-                placeholder="https://..."
-                value={photoURL}
-                onChange={(e) => setPhotoURL(e.target.value)}
                 className="input input-bordered w-full bg-base-100 border-base-300 focus:border-primary text-sm"
               />
             </label>

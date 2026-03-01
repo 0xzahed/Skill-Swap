@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { updateProfile } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 import toast, { Toaster } from "react-hot-toast";
 import {
   FaUser,
@@ -16,6 +17,7 @@ import { motion } from "framer-motion";
 
 const MyProfile = () => {
   const { user, setUser } = useContext(AuthContext);
+  const auth = getAuth();
   const [isEditing, setIsEditing] = useState(false);
   const [loading, setLoading] = useState(false);
   const [uploading, setUploading] = useState(false);
@@ -37,18 +39,16 @@ const MyProfile = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Handle image upload to Cloudinary
+  // Handle image upload to ImgBB
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
 
-    // Check file size (max 5MB)
     if (file.size > 5 * 1024 * 1024) {
       toast.error("Image size should be less than 5MB");
       return;
     }
 
-    // Check file type
     if (!file.type.startsWith("image/")) {
       toast.error("Please upload an image file");
       return;
@@ -56,13 +56,11 @@ const MyProfile = () => {
 
     setUploading(true);
     const uploadData = new FormData();
-    uploadData.append("file", file);
-    uploadData.append("upload_preset", "skillswap_profile");
-    uploadData.append("cloud_name", "dcpdxybut");
+    uploadData.append("image", file);
 
     try {
       const response = await fetch(
-        "https://api.cloudinary.com/v1_1/dcpdxybut/image/upload",
+        "https://api.imgbb.com/1/upload?key=3ffb585900e7b0a59e18fdc917bf4c4f",
         {
           method: "POST",
           body: uploadData,
@@ -70,18 +68,17 @@ const MyProfile = () => {
       );
 
       const data = await response.json();
-      if (data.secure_url) {
-        setFormData((prev) => ({ ...prev, photoURL: data.secure_url }));
-        
-        // Immediately update Firebase profile with new photo
-        await updateProfile(user, {
-          photoURL: data.secure_url,
-        });
-        
-        // Update context
-        setUser({ ...user, photoURL: data.secure_url });
-        
-        toast.success("Photo uploaded and saved successfully!");
+      if (data.success && data.data?.url) {
+        const url = data.data.url;
+        setFormData((prev) => ({ ...prev, photoURL: url }));
+
+        await updateProfile(auth.currentUser, { photoURL: url });
+        await auth.currentUser.reload();
+        setUser({ ...auth.currentUser });
+
+        toast.success("Photo uploaded successfully!");
+      } else {
+        toast.error("Upload failed. Please try again.");
       }
     } catch (error) {
       console.error("Upload error:", error);
@@ -97,19 +94,12 @@ const MyProfile = () => {
     setLoading(true);
 
     try {
-      await updateProfile(user, {
+      await updateProfile(auth.currentUser, {
         displayName: formData.displayName,
         photoURL: formData.photoURL,
       });
-      
-      // Force reload user data
-      const updatedUser = {
-        ...user,
-        displayName: formData.displayName,
-        photoURL: formData.photoURL,
-      };
-      
-      setUser(updatedUser);
+      await auth.currentUser.reload();
+      setUser({ ...auth.currentUser });
       toast.success("Profile updated successfully!");
       setIsEditing(false);
     } catch (err) {
@@ -171,31 +161,26 @@ const MyProfile = () => {
                       className="w-full h-full rounded-full object-cover bg-base-100"
                     />
                   </div>
-                  {isEditing && (
-                    <label
-                      htmlFor="photo-upload"
-                      className="absolute -bottom-2 -right-2 bg-primary text-white rounded-full p-3 shadow-lg cursor-pointer hover:bg-primary/90 transition-colors"
-                    >
-                      {uploading ? (
-                        <div className="animate-spin">⏳</div>
-                      ) : (
-                        <FaCamera className="text-lg" />
-                      )}
-                      <input
-                        id="photo-upload"
-                        type="file"
-                        accept="image/*"
-                        onChange={handleImageUpload}
-                        className="hidden"
-                        disabled={uploading}
-                      />
-                    </label>
-                  )}
-                  {!isEditing && (
-                    <div className="absolute -bottom-2 -right-2 bg-primary text-white rounded-full p-3 shadow-lg">
-                      <FaUser className="text-lg" />
-                    </div>
-                  )}
+                  {/* Always-visible upload button */}
+                  <label
+                    htmlFor="photo-upload"
+                    className="absolute -bottom-2 -right-2 bg-primary text-white rounded-full p-3 shadow-lg cursor-pointer hover:bg-primary/90 transition-colors"
+                    title="Change photo"
+                  >
+                    {uploading ? (
+                      <span className="loading loading-spinner loading-xs" />
+                    ) : (
+                      <FaCamera className="text-base" />
+                    )}
+                    <input
+                      id="photo-upload"
+                      type="file"
+                      accept="image/*"
+                      onChange={handleImageUpload}
+                      className="hidden"
+                      disabled={uploading}
+                    />
+                  </label>
                 </div>
 
                 <h2 className="text-xl font-bold text-base-content mb-1">

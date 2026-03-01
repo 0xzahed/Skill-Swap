@@ -81,7 +81,7 @@ const Header = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-10 flex items-start pt-8 pb-6 lg:pt-10 lg:pb-6">
+      <div className="relative z-10 flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-10 flex items-start pt-20 pb-6 lg:pt-24 lg:pb-6">
         <div className="grid lg:grid-cols-[1fr_1.3fr] gap-8 items-center w-full">
           {/* Left */}
           <AnimatePresence mode="wait">

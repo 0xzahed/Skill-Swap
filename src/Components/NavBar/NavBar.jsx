@@ -1,5 +1,5 @@
 import React, { use, useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import { CiUser } from "react-icons/ci";
 import { FiLogOut, FiBookOpen, FiX, FiMenu } from "react-icons/fi";
@@ -9,9 +9,11 @@ const NavBar = () => {
   const { user, logOut } = use(AuthContext);
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { pathname } = useLocation();
+  const isHome = pathname === "/";
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    const onScroll = () => setScrolled(window.scrollY > 60);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -41,8 +43,10 @@ const NavBar = () => {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled ? "navbar-glass" : "navbar-transparent"
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-400 ${
+          isHome && !scrolled
+            ? "bg-transparent"
+            : "bg-white shadow-lg border-b border-base-200"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
