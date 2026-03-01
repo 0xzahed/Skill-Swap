@@ -130,7 +130,7 @@ const MyProfile = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-base-200 via-base-100 to-base-200 py-12 px-4">
+    <div className="min-h-screen bg-base-200 py-12 px-4">
       <Toaster position="top-right" />
 
       <div className="max-w-4xl mx-auto">
@@ -160,7 +160,7 @@ const MyProfile = () => {
             <div className="bg-base-100 rounded-2xl shadow-xl p-6 border border-base-300">
               <div className="flex flex-col items-center">
                 <div className="relative mb-4">
-                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-primary to-secondary p-1">
+                  <div className="w-32 h-32 rounded-full bg-primary p-1">
                     <img
                       src={
                         formData.photoURL ||

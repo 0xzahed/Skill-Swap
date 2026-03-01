@@ -19,8 +19,8 @@ const Home = () => {
       <Motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="bg-base-200 py-12"
+        transition={{ duration: 0.5, delay: 0.1 }}
+        className="bg-base-200 py-12 border-b border-base-300"
       >
         <div className="max-w-7xl mx-auto px-4">
           <SmartSearch />

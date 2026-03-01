@@ -88,7 +88,7 @@ const Service = () => {
 
   return (
     <div className="bg-base-100 w-full">
-      <section className="relative overflow-hidden bg-linear-to-br from-primary via-primary to-primary-focus text-white">
+      <section className="relative overflow-hidden bg-primary text-white">
         <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_top,#fff3,transparent_55%)]"></div>
         <div className="max-w-7xl mx-auto px-4 py-16 relative z-10 grid gap-10 lg:grid-cols-2">
           <div className="space-y-6">
@@ -276,50 +276,59 @@ const Service = () => {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {filteredSkills.map(
-                ({ skillId, skillName, image, rating, price }) => (
+                ({ skillId, skillName, image, rating, price, category, providerName, students }) => (
                   <Motion.div
                     key={skillId}
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                    viewport={{ once: false }}
-                    className="bg-base-100 border border-base-300 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 group h-full flex flex-col"
+                    transition={{ duration: 0.45 }}
+                    viewport={{ once: true }}
                   >
-                    <div className="h-44">
-                      <img
-                        src={image}
-                        alt={skillName}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
+                    <Link
+                      to={`/skill/${skillId}`}
+                      className="flex flex-col bg-base-100 border border-base-300 rounded-2xl overflow-hidden card-lift group h-full"
+                    >
+                      <div className="relative h-44 overflow-hidden">
+                        <img
+                          src={image}
+                          alt={skillName}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        {category && (
+                          <span className="absolute top-3 left-3 px-2.5 py-0.5 rounded-full text-xs font-bold bg-white/90 text-primary shadow">
+                            {category}
+                          </span>
+                        )}
+                      </div>
 
-                    <div className="p-4 flex flex-col flex-grow">
-                      <Link to={`/skill/${skillId}`}>
-                        <h3 className="text-lg font-bold text-base-content mb-2 group-hover:text-primary transition-colors duration-300 line-clamp-2 min-h-[56px]">
+                      <div className="p-4 flex flex-col flex-grow">
+                        <h3 className="text-base font-bold text-base-content mb-1 group-hover:text-primary transition-colors line-clamp-2 min-h-[48px]">
                           {skillName}
                         </h3>
-                      </Link>
+                        {providerName && (
+                          <p className="text-xs text-base-content/50 mb-3 truncate">by {providerName}</p>
+                        )}
 
-                      <div className="flex items-center gap-2 mb-3">
-                        <div className="flex items-center gap-1">
-                          <FaStar className="text-yellow-400 text-sm" />
-                          <span className="text-yellow-500 text-sm font-semibold">
-                            {rating}
+                        <div className="flex items-center gap-3 text-xs text-base-content/60 mb-4">
+                          <span className="flex items-center gap-1">
+                            <FaStar className="text-yellow-400" />
+                            <span className="font-semibold text-base-content">{rating}</span>
                           </span>
+                          {students && (
+                            <span className="flex items-center gap-1">
+                              <FaUsers size={11} />
+                              {students.toLocaleString()}
+                            </span>
+                          )}
+                        </div>
+
+                        <div className="mt-auto flex items-center justify-between border-t border-base-200 pt-3">
+                          <span className="text-2xl font-black text-primary">${price}</span>
+                          <span className="btn btn-primary btn-xs rounded-lg">View →</span>
                         </div>
                       </div>
-
-                      <div className="flex items-center justify-between mt-auto">
-                        <span className="text-primary font-bold text-xl">
-                          ${price}
-                        </span>
-                        <Link to={`/skill/${skillId}`}>
-                          <button className="btn btn-primary btn-sm rounded-lg">
-                            View Details
-                          </button>
-                        </Link>
-                      </div>
-                    </div>
+                    </Link>
                   </Motion.div>
                 )
               )}

@@ -117,7 +117,7 @@ const AIChatbot = () => {
             className="fixed bottom-6 right-6 w-96 h-[600px] bg-base-100 rounded-2xl shadow-2xl flex flex-col z-50 border border-base-300"
           >
             {/* Header */}
-            <div className="bg-linear-to-r from-primary to-primary-focus text-white p-4 rounded-t-2xl flex items-center justify-between">
+            <div className="bg-primary text-white p-4 rounded-t-2xl flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="bg-white/20 p-2 rounded-full">
                   <FaRobot className="text-xl" />

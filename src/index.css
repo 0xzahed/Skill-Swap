@@ -10,15 +10,17 @@
   --color-accent: #ebe9fa;
 }
 
-/* * {
-  font-family: "Urbanist", sans-serif;
-} */
+/* ── Base font ───────────────────────────── */
+* {
+  font-family: "Urbanist", "Poppins", sans-serif;
+}
 
+/* ── Active nav link ─────────────────────── */
 nav a.active {
   color: blueviolet;
 }
 
-/* Light theme */
+/* ── Light theme ─────────────────────────── */
 :root {
   --base-100: #ffffff;
   --base-200: #f5f3ff;
@@ -26,10 +28,200 @@ nav a.active {
   --base-content: #1f2937;
 }
 
-/* Dark theme */
+/* ── Dark theme ──────────────────────────── */
 [data-theme="dark"] {
-  --base-100: #000000;
-  --base-200: #0d0d0d;
-  --base-300: #1a1a1a;
+  --base-100: #050509;
+  --base-200: #0f0f18;
+  --base-300: #1a1a2e;
   --base-content: #e5e7eb;
 }
+
+/* ── Custom Scrollbar ────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #422ad5, #8b7eff);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover { background: #3319b0; }
+
+/* ── Solid text utility ─────────────────── */
+.gradient-text {
+  color: #422ad5;
+}
+
+.gradient-text-warm {
+  color: #f59e0b;
+}
+
+/* ── Glass card ──────────────────────────── */
+.glass-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+[data-theme="dark"] .glass-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ── Navbar glass ────────────────────────── */
+.navbar-glass {
+  background: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 1px 30px rgba(66, 42, 213, 0.08);
+  border-bottom: 1px solid rgba(66, 42, 213, 0.08);
+}
+
+[data-theme="dark"] .navbar-glass {
+  background: rgba(5, 5, 9, 0.88) !important;
+  box-shadow: 0 1px 30px rgba(66, 42, 213, 0.25);
+  border-bottom: 1px solid rgba(139, 126, 255, 0.12);
+}
+
+.navbar-transparent {
+  background: transparent !important;
+  box-shadow: none !important;
+  border-bottom: none !important;
+}
+
+/* ── Solid primary background ───────────── */
+.animated-gradient {
+  background: #422ad5;
+}
+
+/* ── Blob float ──────────────────────────── */
+@keyframes blobFloat {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  33%       { transform: translate(20px, -30px) scale(1.06); }
+  66%       { transform: translate(-15px, 10px) scale(0.96); }
+}
+
+.blob { animation: blobFloat 12s ease-in-out infinite; }
+.blob-delay-2 { animation-delay: -4s; }
+.blob-delay-4 { animation-delay: -8s; }
+
+/* ── Pulse glow ──────────────────────────── */
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(66, 42, 213, 0.4); }
+  50%       { box-shadow: 0 0 0 14px rgba(66, 42, 213, 0); }
+}
+
+.pulse-glow { animation: pulseGlow 2.5s ease-in-out infinite; }
+
+/* ── Shimmer skeleton ────────────────────── */
+@keyframes shimmer {
+  0%   { background-position: -600px 0; }
+  100% { background-position: 600px 0; }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 600px 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+/* ── Step connector line ─────────────────── */
+.step-connector {
+  position: absolute;
+  top: 50%;
+  right: -50%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #422ad5 0%, transparent 100%);
+  z-index: 0;
+}
+
+/* ── Hero grid overlay ───────────────────── */
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(66,42,213,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(66,42,213,0.06) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ── Card hover lift ─────────────────────── */
+.card-lift {
+  transition: transform 0.3s cubic-bezier(.22,.61,.36,1),
+              box-shadow 0.3s ease;
+}
+.card-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(66, 42, 213, 0.15);
+}
+
+/* ── Border hover card ───────────────────── */
+.gradient-border {
+  position: relative;
+  background: var(--base-100);
+  z-index: 0;
+}
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: #422ad5;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.gradient-border:hover::before { opacity: 1; }
+
+/* ── Number badge solid ──────────────────── */
+.badge-step-1 { background: #422ad5; }
+.badge-step-2 { background: #422ad5; }
+.badge-step-3 { background: #422ad5; }
+.badge-step-4 { background: #422ad5; }
+
+/* ── Fade-in up animation ────────────────── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in-up { animation: fadeInUp 0.6s ease forwards; }
+
+/* ── Section divider wave ────────────────── */
+.wave-divider svg { display: block; }
+
+/* ── Newsletter input focus ring ─────────── */
+.newsletter-input:focus {
+  outline: none;
+  ring: 2px solid #422ad5;
+  box-shadow: 0 0 0 3px rgba(66, 42, 213, 0.25);
+}
+
+/* ── Skill tag pill ──────────────────────── */
+.skill-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  background: rgba(66, 42, 213, 0.1);
+  color: #422ad5;
+}
+
+[data-theme="dark"] .skill-pill {
+  background: rgba(139, 126, 255, 0.15);
+  color: #a89fff;
+}
+
+/* ── Stat number counter ─────────────────── */
+.stat-number {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 900;
+  line-height: 1;
+}
+
+/* ── Social icon hover ───────────────────── */
+.social-icon {
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+.social-icon:hover { transform: translateY(-3px); }

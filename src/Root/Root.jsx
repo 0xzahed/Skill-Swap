@@ -10,7 +10,9 @@ const Root = () => {
   return (
     <div>
       <NavBar></NavBar>
-      <Outlet></Outlet>
+      <main className="pt-16">
+        <Outlet></Outlet>
+      </main>
       <Footer></Footer>
       <Toaster position="top-right" />
       <AIChatbot />
